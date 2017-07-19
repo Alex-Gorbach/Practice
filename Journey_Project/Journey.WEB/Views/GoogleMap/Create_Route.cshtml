@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="~/Content/MapStyle.css" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js">
+    </script>
+    <title>View</title>
+</head>
+
+    <body>
+
+        <div id="map"></div>
+        <div id="right-panel">
+            <div class="AllWayPoints">
+                <b>Start:</b>
+                <input type="text" id="start" value="Гродно, Гродненская область, Беларусь"/>
+                <div class="Waypoints">
+                </div>
+                
+                <b>End:</b>
+               <input type="text" id="end" value="Минск, Беларусь" />
+                <br>
+               
+                
+            </div>
+            <input type="button" id="AddWayPoint" value="&#10133;">
+            <input type="submit" id="submit">
+            
+
+            <div id="directions-panel"></div>
+        </div>
+        <input type="button" class="DeleteRouteBtn" value="&#8856;">
+    </body>
+
+</html>
+
+<script>
+
+    $("#AddWayPoint").on("click", function () {
+        var waypoints_count = $('.waypoints').length;
+        if (waypoints_count<=23)
+            $(".Waypoints").append('<input type="text" class="waypoints" id="waypoints' + waypoints_count +'" /><input type="button" class="DeleteRouteBtn" value="&#8856;">');
+        else
+            alert("Невозможно создать больше промежуточных точек")
+    });
+    $(".DeleteRouteBtn").on("click", function () {
+        alert("asdas");
+    });
+
+
+      function initMap() {
+          var directionsService = new google.maps.DirectionsService;
+          var directionsDisplay = new google.maps.DirectionsRenderer;
+          var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 6,
+              center: { lat: 41.85, lng: -87.65 }
+          });
+          directionsDisplay.setMap(map);
+
+          document.getElementById('submit').addEventListener('click', function () {
+              calculateAndDisplayRoute(directionsService, directionsDisplay);
+          });
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+          var waypts = [];
+          var WayPointArray = [];
+          var waypoints_count = document.getElementsByClassName("waypoints").length;
+          console.log(document.getElementsByClassName("waypoints").length)
+          var ss;
+
+          if (waypoints_count != 0) {
+              for (var i = 0; i < waypoints_count; i++){
+                  ss = document.getElementById('waypoints' + i);
+                  console.log(ss);
+                  WayPointArray.push(document.getElementById('waypoints' + i));
+              }
+
+              for (var i = 0; i < WayPointArray.length; i++) {
+                  waypts.push({
+                      location: WayPointArray[i].value,
+                      stopover: true
+                  });
+              }
+              
+          }
+
+          directionsService.route({
+              origin: document.getElementById('start').value,
+
+              destination: document.getElementById('end').value,
+              waypoints: waypts,
+              optimizeWaypoints: true,
+              travelMode: 'DRIVING'
+          }, function (response, status) {
+              if (status === 'OK') {
+                  directionsDisplay.setDirections(response);
+                  var route = response.routes[0];
+                  var summaryPanel = document.getElementById('directions-panel');
+                  summaryPanel.innerHTML = '';
+                  // Отобразить информацию длякаждого маршрута
+                  for (var i = 0; i < route.legs.length; i++) {
+                      var routeSegment = i + 1;
+                      summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                          '</b><br>';
+                      summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                      summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                      summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+                  }
+              } else {
+                  window.alert('Directions request failed due to ' + status);
+              }
+          });
+      }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9GI2-eH45d9wuipFVjopmSUr98_bCSoc &callback=initMap">
+</script>

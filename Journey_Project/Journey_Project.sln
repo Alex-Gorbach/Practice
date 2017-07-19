@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journey.WEB", "Journey.WEB\Journey.WEB.csproj", "{07BE3234-D0BA-4768-8A88-B94BDF147FA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journey.DAL", "Journey.DAL\Journey.DAL.csproj", "{2F8EE315-BCF9-4C87-99E0-DE207D627708}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journey.BLL", "Journey.BLL\Journey.BLL.csproj", "{3A42D8D7-0EA7-4693-AAA2-AF8BF2C839C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07BE3234-D0BA-4768-8A88-B94BDF147FA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07BE3234-D0BA-4768-8A88-B94BDF147FA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07BE3234-D0BA-4768-8A88-B94BDF147FA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07BE3234-D0BA-4768-8A88-B94BDF147FA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F8EE315-BCF9-4C87-99E0-DE207D627708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F8EE315-BCF9-4C87-99E0-DE207D627708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F8EE315-BCF9-4C87-99E0-DE207D627708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F8EE315-BCF9-4C87-99E0-DE207D627708}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A42D8D7-0EA7-4693-AAA2-AF8BF2C839C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A42D8D7-0EA7-4693-AAA2-AF8BF2C839C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A42D8D7-0EA7-4693-AAA2-AF8BF2C839C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A42D8D7-0EA7-4693-AAA2-AF8BF2C839C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

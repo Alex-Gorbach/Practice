@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Journey.DAL.Entities.ApplicationUser>
+
+@{
+    ViewBag.Title = "Administration";
+}
+
+<h2>Administration</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="tftable" border="1">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecurityStamp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientProfile.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientProfile.Lastname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailConfirmed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasswordHash)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecurityStamp)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientProfile.Name)
+        </td>
+        <th>
+            @Html.DisplayFor(modelItem => item.ClientProfile.Lastname)
+        </th>
+        <td>
+            @Html.ActionLink("Edit", "Edit",new { id=item.ClientProfile.Id}) |
+        
+            @*@Html.Action("Delete", new { id = item.ClientProfile.Id })*@
+           @using (Html.BeginForm("Delete", "Account", new { id = item.ClientProfile.Id }))
+           {
+            @Html.AntiForgeryToken()
+               <input type="submit" name="Delete" value="id" />
+           }
+
+        </td>
+    </tr>
+}
+
+</table>
