@@ -122,7 +122,7 @@ namespace Journey.WEB.Controllers
 
         public  ActionResult Administration()
         {
-            List<UserDTO> users = UserService.GetAllUsers();
+            List<UserDTO> users = UserService.GetAllUsersInformation();
             
             return View(users);
         }

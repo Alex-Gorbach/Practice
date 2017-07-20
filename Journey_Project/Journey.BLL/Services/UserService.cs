@@ -41,12 +41,13 @@ namespace Journey.BLL.Services
 
         public   List<UserDTO> GetAllUsersInformation()
         {
-           
-            AutoMapper.
-            List<UserDTO> users = Database.UserManager.Users.ToList();
-            
-       
-            return users;
+            //Tuning Automaper
+            Mapper.Initialize(cfg => cfg.CreateMap<ApplicationUser, UserDTO > ());
+            //Matching
+            var u = Mapper.Map<IEnumerable<ApplicationUser>, List<UserDTO>>(Database.UserManager.Users.ToList());
+            //var users = Mapper.Map<IEnumerable<UserDTO>, List<ApplicationUser>>(Database.UserManager.Users.ti);
+
+            return u;
         }
 
 
