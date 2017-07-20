@@ -18,7 +18,7 @@ namespace Journey.BLL.Interfaces
         Task<OperationDetails> Create(UserDTO userDto);
         Task<OperationDetails> Delete(String Id);
         Task<OperationDetails> Update(String Id);
-        List<ApplicationUser> GetAllUsers();
+        List<UserDTO> GetAllUsersInformation();
          Task<ClaimsIdentity> Authenticate(UserDTO userDto);
 
         Task SetInitialData(UserDTO adminDto,List<string> roles);

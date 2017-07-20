@@ -8,6 +8,7 @@ using Journey.BLL.Interfaces;
 using Journey.DAL.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using System;
 
 namespace Journey.BLL.Services
@@ -38,10 +39,11 @@ namespace Journey.BLL.Services
         }
 
 
-        public   List<ApplicationUser> GetAllUsers()
+        public   List<UserDTO> GetAllUsersInformation()
         {
            
-            List<ApplicationUser> users = Database.UserManager.Users.ToList();
+            AutoMapper.
+            List<UserDTO> users = Database.UserManager.Users.ToList();
             
        
             return users;
