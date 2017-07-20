@@ -42,13 +42,19 @@ namespace Journey.BLL.Services
         public   List<UserDTO> GetAllUsersInformation()
         {
             //Tuning Automaper
-            Mapper.Initialize(cfg => cfg.CreateMap<ApplicationUser, UserDTO > ());
+            Mapper.Initialize(cfg => cfg.CreateMap<ApplicationUser, UserDTO>()
+             .ForMember("Id", opt => opt.MapFrom(c => c.ClientProfile.Id))
+            .ForMember("Name", opt => opt.MapFrom(c => c.ClientProfile.Name))
+            .ForMember("Password", opt => opt.MapFrom(c => c.PasswordHash))
+            .ForMember("Lastname", opt => opt.MapFrom(src => src.ClientProfile.Lastname)));
+
             //Matching
             var u = Mapper.Map<IEnumerable<ApplicationUser>, List<UserDTO>>(Database.UserManager.Users.ToList());
-            //var users = Mapper.Map<IEnumerable<UserDTO>, List<ApplicationUser>>(Database.UserManager.Users.ti);
 
             return u;
         }
+
+
 
 
         public async Task<OperationDetails> Delete(string Id)
@@ -59,11 +65,11 @@ namespace Journey.BLL.Services
               await Database.SaveAsync();
             if (result.Succeeded)
             {
-                return new OperationDetails(true, "Пользователь Удален", "");
+                return new OperationDetails(true, "User deleteв", "");
             }
             else
             {
-                return new OperationDetails(false, "Ошибка удаления пользователя", "");
+                return new OperationDetails(false, "Error removing user", "");
 
             }
             
@@ -80,9 +86,9 @@ namespace Journey.BLL.Services
                 var result = await Database.UserManager.CreateAsync(user, userDto.Password);
                 if (result.Errors.Count() > 0)
                     return new OperationDetails(false, result.Errors.FirstOrDefault(), "");
-                // добавляем роль
+                // add a role
                 await Database.UserManager.AddToRoleAsync(user.Id, userDto.Role);
-                // создаем профиль клиента
+                // create client profile
                 ClientProfile clientProfile = new ClientProfile { Id = user.Id, Lastname = userDto.Lastname, Name = userDto.Name };
                 Database.ClientManager.Create(clientProfile);
                 await Database.SaveAsync();
@@ -99,9 +105,9 @@ namespace Journey.BLL.Services
         public async Task<ClaimsIdentity> Authenticate(UserDTO userDto)
         {
             ClaimsIdentity claim = null;
-            // находим пользователя
+            // Find the user
             ApplicationUser user = await Database.UserManager.FindAsync(userDto.Email, userDto.Password);
-            // авторизуем его и возвращаем объект ClaimsIdentity
+            //Authorize it and return the object ClaimsIdentity
             if (user != null)
                 claim = await Database.UserManager.CreateIdentityAsync(user,
                                             DefaultAuthenticationTypes.ApplicationCookie);
@@ -109,7 +115,7 @@ namespace Journey.BLL.Services
         }
 
 
-        //начальная инициализация бд
+        //Initial initialization DB
         public async Task SetInitialData(UserDTO adminDto, List<string> roles)
         {
             foreach (string roleName in roles)

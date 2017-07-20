@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-//Через данный класс мы будем передавать информацию о пользователях на уровень представления или, наоборот,
-//получать с этого уровня данные.Данный класс содержит все основные свойства, соответствующие свойствам 
-//моделей ApplicationUser и ClientProfile.
+// Through this class we will transfer information about users to the presentation level or, conversely,
+// get data from this layer. This class contains all the basic properties that correspond to the properties
+// Models ApplicationUser and ClientProfile.
 namespace Journey.BLL.DTO
 {
     public class UserDTO
