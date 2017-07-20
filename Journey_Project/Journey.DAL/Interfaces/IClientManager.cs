@@ -3,10 +3,10 @@ using System;
 
 namespace Journey.DAL.Interfaces
 {
-    //интерфейс управления профилями пользователей 
+    // user profile management interface
     public interface IClientManager : IDisposable
     {
-        //метод создания нового профиля пользователя
+        // method for creating a new user profile
         void Create(ClientProfile item);
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Journey.BLL.DTO
 {
-    class UserRoudeDTO
+    class UserRouteDTO
     {
         public string Id { get; set; }
         public string UserID { get; set; }

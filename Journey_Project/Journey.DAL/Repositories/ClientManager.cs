@@ -20,13 +20,6 @@ namespace Journey.DAL.Repositories
             Database.SaveChanges();
         }
 
-
-        
-
-
-
-  
-
         public void Dispose()
         {
             Database.Dispose();

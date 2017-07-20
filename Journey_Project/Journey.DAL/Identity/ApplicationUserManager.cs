@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Journey.DAL.Identity
 {
-    //Данный класс будет управлять пользователями: добавлять их в базу данных и аутентифицировать.
+    // This class will manage users: add them to the database and authenticate.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)

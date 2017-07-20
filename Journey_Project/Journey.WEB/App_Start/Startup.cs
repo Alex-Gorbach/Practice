@@ -12,12 +12,12 @@ namespace Journey.WEB.App_Start
 {
     public class Startup
     {
-        // создается сервис для работы с сервисами
+        // creates a service for working with services
         IServiceCreator serviceCreator = new ServiceCreator();
     public void Configuration(IAppBuilder app)
     {
-           // сервис региструется контекстом OWIN
-        app.CreatePerOwinContext<IUserService>(CreateUserService);
+            // сервис региструется контекстом OWIN
+            app.CreatePerOwinContext<IUserService>(CreateUserService);
         app.UseCookieAuthentication(new CookieAuthenticationOptions
         {
             AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,

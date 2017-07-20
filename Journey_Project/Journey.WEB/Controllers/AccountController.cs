@@ -77,12 +77,6 @@ namespace Journey.WEB.Controllers
         }
 
 
-
-
-
-
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterModel model)

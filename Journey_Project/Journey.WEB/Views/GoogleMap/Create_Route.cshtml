@@ -84,7 +84,7 @@
                       stopover: true
                   });
               }
-              
+
           }
 
           directionsService.route({
@@ -100,7 +100,7 @@
                   var route = response.routes[0];
                   var summaryPanel = document.getElementById('directions-panel');
                   summaryPanel.innerHTML = '';
-                  // Отобразить информацию длякаждого маршрута
+                  // Display information for each route
                   for (var i = 0; i < route.legs.length; i++) {
                       var routeSegment = i + 1;
                       summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +

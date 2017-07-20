@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\UserDTO.cs" />
-    <Compile Include="DTO\UserRoudeDTO.cs" />
+    <Compile Include="DTO\UserRouteDTO.cs" />
     <Compile Include="Infrastructure\OperationDetails.cs" />
     <Compile Include="Interfaces\IServiceCreator.cs" />
     <Compile Include="Interfaces\IUserService.cs" />

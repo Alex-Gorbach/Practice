@@ -2,7 +2,7 @@
 
 namespace Journey.DAL.Entities
 {
-    //класс роли
+    //Role class
     public class ApplicationRole : IdentityRole
     {
     }

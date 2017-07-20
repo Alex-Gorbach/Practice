@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//Данный класс будет хранить информацию об успешности операции.Свойство Succedeed указывает,
-//успешна ли операция, а свойства Message и Property будут хранить соответственно сообщение 
-//об ошибке и свойство, на котормо произошла ошибка.
+// This class will store information about the success of the operation. The Succedeed property indicates,
+// the operation is successful, and the properties Message and Property will store the corresponding message
+// about the error and the property on which the error occurred.
 
 namespace Journey.BLL.Infrastructure
 {

@@ -7,9 +7,9 @@ using Journey.BLL.Infrastructure;
 using Journey.DAL.Entities;
 
 
-//Через объекты данного интерфейса уровень представления будет взаимодействовать с уровнем
-//доступа к данным.Здесь определены только три метода: Create(создание пользователей),
-//Authenticate(аутентификация пользователей) и SetInitialData(установка начальных данных в БД - админа и списка ролей).
+// Through the objects of this interface, the presentation layer will interact with the level
+// access to data. Only three methods are defined here: Create (creating users),
+// Authenticate (user authentication) and SetInitialData (setting the initial data in the DB - admin and the list of roles).
 
 namespace Journey.BLL.Interfaces
 {
