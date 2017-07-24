@@ -109,8 +109,7 @@ namespace Journey.BLL.Services
             ApplicationUser user = await Database.UserManager.FindAsync(userDto.Email, userDto.Password);
             //Authorize it and return the object ClaimsIdentity
             if (user != null)
-                claim = await Database.UserManager.CreateIdentityAsync(user,
-                                            DefaultAuthenticationTypes.ApplicationCookie);
+                claim = await Database.UserManager.CreateIdentityAsync(user,DefaultAuthenticationTypes.ApplicationCookie);
             return claim;
         }
 
