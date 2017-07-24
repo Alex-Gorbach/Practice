@@ -8,7 +8,7 @@ namespace Journey.BLL.DTO
 {
     public class UserRouteDTO
     {
-        //public string Id { get; set; }
+        public int Id { get; set; }
         public string UserID { get; set; }
         public string StartPoint { get; set; }
         public string EndPoint { get; set; }

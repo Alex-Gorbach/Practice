@@ -82,7 +82,7 @@ namespace Journey.BLL.Services
             ApplicationUser user = await Database.UserManager.FindByEmailAsync(userDto.Email);
             if (user == null)
             {
-                user = new ApplicationUser { Email = userDto.Email, UserName = userDto.Name };
+                user = new ApplicationUser { Email = userDto.Email, UserName = userDto.Email };
                 var result = await Database.UserManager.CreateAsync(user, userDto.Password);
                 if (result.Errors.Count() > 0)
                     return new OperationDetails(false, result.Errors.FirstOrDefault(), "");
@@ -152,7 +152,7 @@ namespace Journey.BLL.Services
           
                 // create client route
                 ClientRoute clientRoute = new ClientRoute {
-                    Id = "sqwewdfbfnhdxgbd",
+                   
                     StartPoint = userRouteDto.StartPoint,
                     EndPoint = userRouteDto.EndPoint,
                     Waypoints= userRouteDto.Waypoints,
@@ -209,11 +209,11 @@ namespace Journey.BLL.Services
         public List<UserDTO> GetAllRouteInformation()
         {
             //Tuning Automaper
-            Mapper.Initialize(cfg => cfg.CreateMap<ApplicationUser, UserRouteDTO>()
-             .ForMember("Id", opt => opt.MapFrom(c => c.ClientRoute.Id))
-            .ForMember("StartPoint", opt => opt.MapFrom(c => c.ClientRoute.StartPoint))
-            .ForMember("EndPoint", opt => opt.MapFrom(c => c.ClientRoute.EndPoint))
-            .ForMember("Lastname", opt => opt.MapFrom(src => src.ClientProfile.Lastname)));
+            //Mapper.Initialize(cfg => cfg.CreateMap<ApplicationUser, UserRouteDTO>()
+            // .ForMember("Id", opt => opt.MapFrom(c => c.ClientRoute.Id))
+            //.ForMember("StartPoint", opt => opt.MapFrom(c => c.ClientRoute.StartPoint))
+            //.ForMember("EndPoint", opt => opt.MapFrom(c => c.ClientRoute.EndPoint))
+            //.ForMember("Lastname", opt => opt.MapFrom(src => src.ClientProfile.Lastname)));
 
             //Matching
             var u = Mapper.Map<IEnumerable<ApplicationUser>, List<UserDTO>>(Database.UserManager.Users.ToList());

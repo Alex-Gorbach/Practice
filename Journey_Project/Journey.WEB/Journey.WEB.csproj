@@ -1108,6 +1108,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Account\Administration.cshtml" />
     <Content Include="Views\GoogleMap\CreateRoute.cshtml" />
+    <Content Include="Views\GoogleMap\SuccesCreated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

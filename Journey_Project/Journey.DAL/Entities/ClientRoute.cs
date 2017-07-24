@@ -8,8 +8,7 @@ namespace Journey.DAL.Entities
     public class ClientRoute
     {
         [Key]
-        [ForeignKey("ApplicationUser")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string UserID { get; set; }
         public string StartPoint { get; set; }
@@ -18,8 +17,7 @@ namespace Journey.DAL.Entities
         public DateTime Date { get; set; }
         public int Seats { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
-
+       
 
     }
 }

@@ -34,11 +34,12 @@ namespace Journey.WEB.Controllers
             }
         }
         // GET: GoogleMap
-        public ActionResult Index()
+        public ActionResult SuccesCreated()
         {
             return View();
         }
 
+        
 
         [Authorize]
         public ActionResult CreateRoute()
@@ -63,12 +64,12 @@ namespace Journey.WEB.Controllers
 
                 OperationDetails operationDetails = await UserService.CreateRoute(userRouteDto);
                 if (operationDetails.Succedeed)
-                    return View("SuccessCreating");
+                    return View("SuccesCreated");
                 else
                     ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
             }
 
-            return View();
+            return View("SuccesCreated");
         }
     }
 }
