@@ -10,7 +10,7 @@ using System.Security.Claims;
 using Journey.BLL.Interfaces;
 using Journey.BLL.Infrastructure;
 using System.Net;
-using Journey.DAL.Entities;
+
 
 namespace Journey.WEB.Controllers
 {
@@ -101,11 +101,7 @@ namespace Journey.WEB.Controllers
             }
             return View(model);
         }
-        public ActionResult HelloWorld()
-        {
-            ViewData["Message"] = "Hello World!";
-            return View();
-        }
+
 
         public new ActionResult Profile()
         {

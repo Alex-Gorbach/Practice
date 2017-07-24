@@ -18,12 +18,9 @@ html, body {
 
 #map {
     position: absolute;
-    height: 71%;
-    float: left;
-    width: 52%;
-    padding: -7px;
-    margin-left: 256px;
-    margin-top: 72px;
+    height: 50%;
+    float: right;
+    width: 45%;
 }
 
 .AllWayPoints {
@@ -47,4 +44,10 @@ html, body {
     margin-top: 10px;
     background-color: #FFEE77;
     padding: 10px;
+}
+
+.Waypoints{
+    max-height:200px;
+    overflow-y:scroll;
+    overflow-x:hidden;
 }

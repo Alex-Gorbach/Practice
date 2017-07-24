@@ -24,7 +24,7 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
-                    <li>@Html.ActionLink("Создать маршрут", "Create_Route", "GoogleMap")</li>
+                    <li>@Html.ActionLink("Создать маршрут", "CreateRoute", "GoogleMap")</li>
                     @if (User.IsInRole("admin"))
                     {
                         <li>@Html.ActionLink("Administration", "Administration", "Account")</li>
@@ -52,8 +52,7 @@
         @RenderBody()
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

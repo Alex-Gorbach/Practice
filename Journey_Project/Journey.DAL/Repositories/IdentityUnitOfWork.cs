@@ -15,6 +15,7 @@ namespace Journey.DAL.Repositories
         private ApplicationUserManager userManager;
         private ApplicationRoleManager roleManager;
         private IClientManager clientManager;
+        private IClientRouteManager clientRouteManager;
 
         public IdentityUnitOfWork(string connectionString)
         {
@@ -22,6 +23,7 @@ namespace Journey.DAL.Repositories
             userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
             roleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(db));
             clientManager = new ClientManager(db);
+            clientRouteManager = new ClientRouteManager(db);
 
         }
 
@@ -33,6 +35,11 @@ namespace Journey.DAL.Repositories
         public IClientManager ClientManager
         {
             get { return clientManager; }
+        }
+
+        public IClientRouteManager ClientRouteManager
+        {
+            get { return clientRouteManager; }
         }
 
         public ApplicationRoleManager RoleManager
@@ -64,6 +71,7 @@ namespace Journey.DAL.Repositories
                     userManager.Dispose();
                     roleManager.Dispose();
                     clientManager.Dispose();
+                    clientRouteManager.Dispose();
                 }
                 this.disposed = true;
             }

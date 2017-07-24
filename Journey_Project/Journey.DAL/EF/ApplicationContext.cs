@@ -9,5 +9,7 @@ namespace Journey.DAL.EF
         public ApplicationContext(string conectionStrings) : base("DefaultConnection") { }
 
         public DbSet<ClientProfile> ClientProfiles { get; set; }
+        public DbSet<ClientRoute> ClientRoutes { get; set; }
+
     }
 }

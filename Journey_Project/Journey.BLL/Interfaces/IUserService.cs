@@ -19,7 +19,16 @@ namespace Journey.BLL.Interfaces
         Task<OperationDetails> Delete(String Id);
         Task<OperationDetails> Update(String Id);
         List<UserDTO> GetAllUsersInformation();
-         Task<ClaimsIdentity> Authenticate(UserDTO userDto);
+
+        Task<ClaimsIdentity> Authenticate(UserDTO userDto);
+
+
+        //Route information
+        Task<OperationDetails> CreateRoute(UserRouteDTO userRouteDto);
+        Task<OperationDetails> DeleteRoute(String Id);
+        Task<OperationDetails> UpdateRoute(String Id);
+        List<UserDTO> GetAllRouteInformation();
+
 
         Task SetInitialData(UserDTO adminDto,List<string> roles);
     }

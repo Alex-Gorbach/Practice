@@ -146,6 +146,84 @@ namespace Journey.BLL.Services
             throw new NotImplementedException();
         }
 
+
+        public async Task<OperationDetails> CreateRoute(UserRouteDTO userRouteDto)
+        {
+          
+          
+                // create client route
+                ClientRoute clientRoute = new ClientRoute {
+                    Id = "sqwewdfbfnhdxgbd",
+                    StartPoint = userRouteDto.StartPoint,
+                    EndPoint = userRouteDto.EndPoint,
+                    Waypoints= userRouteDto.Waypoints,
+                    UserID = userRouteDto.UserID,
+                    Date = userRouteDto.Date,
+                    Seats= userRouteDto.Seats
+                };
+                Database.ClientRouteManager.Create(clientRoute);
+                await Database.SaveAsync();
+                return new OperationDetails(true, "Route successfully created", "");
+            
+        }
+
+
+        public async Task<OperationDetails> DeleteRoute(string Id)
+        {
+            ApplicationUser route = Database.UserManager.FindById(Id);
+
+            var result = Database.UserManager.Delete(route);
+            await Database.SaveAsync();
+            if (result.Succeeded)
+            {
+                return new OperationDetails(true, "User deleteв", "");
+            }
+            else
+            {
+                return new OperationDetails(false, "Error removing user", "");
+
+            }
+
+
+        }
+
+
+        public async Task<OperationDetails> UpdateRoute(string Id)
+        {
+            ApplicationUser route = Database.UserManager.FindById(Id);
+
+            var result = Database.UserManager.Delete(route);
+            await Database.SaveAsync();
+            if (result.Succeeded)
+            {
+                return new OperationDetails(true, "User deleteв", "");
+            }
+            else
+            {
+                return new OperationDetails(false, "Error removing user", "");
+
+            }
+
+
+        }
+
+        public List<UserDTO> GetAllRouteInformation()
+        {
+            //Tuning Automaper
+            Mapper.Initialize(cfg => cfg.CreateMap<ApplicationUser, UserRouteDTO>()
+             .ForMember("Id", opt => opt.MapFrom(c => c.ClientRoute.Id))
+            .ForMember("StartPoint", opt => opt.MapFrom(c => c.ClientRoute.StartPoint))
+            .ForMember("EndPoint", opt => opt.MapFrom(c => c.ClientRoute.EndPoint))
+            .ForMember("Lastname", opt => opt.MapFrom(src => src.ClientProfile.Lastname)));
+
+            //Matching
+            var u = Mapper.Map<IEnumerable<ApplicationUser>, List<UserDTO>>(Database.UserManager.Users.ToList());
+
+            return u;
+        }
+
+
+
     }
 
     

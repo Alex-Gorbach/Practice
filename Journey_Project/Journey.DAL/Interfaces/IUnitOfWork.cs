@@ -10,6 +10,7 @@ namespace Journey.DAL.Interfaces
     {
         ApplicationUserManager UserManager { get; }
         IClientManager ClientManager { get; }
+        IClientRouteManager ClientRouteManager { get; }
         ApplicationRoleManager RoleManager { get; }
         Task SaveAsync();
     }

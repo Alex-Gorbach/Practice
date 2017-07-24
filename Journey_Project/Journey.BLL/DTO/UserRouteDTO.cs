@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Journey.BLL.DTO
 {
-    class UserRouteDTO
+    public class UserRouteDTO
     {
-        public string Id { get; set; }
+        //public string Id { get; set; }
         public string UserID { get; set; }
         public string StartPoint { get; set; }
         public string EndPoint { get; set; }
-        public string Waypoints { get; set; }
+        public List<string> Waypoints { get; set; }
         public DateTime Date { get; set; }
-        public int Seat { get; set; }
+        public int Seats { get; set; }
     }
 }
