@@ -10,7 +10,8 @@ using System.Security.Claims;
 using Journey.BLL.Interfaces;
 using Journey.BLL.Infrastructure;
 using System.Net;
-
+using Microsoft.AspNet.Identity;
+using AutoMapper;
 
 namespace Journey.WEB.Controllers
 {
@@ -105,11 +106,12 @@ namespace Journey.WEB.Controllers
 
         public new ActionResult Profile()
         {
-            
-            return View();
+            string id = User.Identity.GetUserId();
+            List<UserRouteDTO> usersRoute = UserService.GetAllRouteInformation(id);
+            return View(usersRoute);
         }
-        [Authorize(Roles = "admin")]
 
+        [Authorize(Roles = "admin")]
         public  ActionResult Administration()
         {
             List<UserDTO> users = UserService.GetAllUsersInformation();
@@ -117,6 +119,12 @@ namespace Journey.WEB.Controllers
             return View(users);
         }
 
+
+        public ActionResult Details(int id)
+        {
+            UserRouteDTO usersRoute = UserService.GetDetailsForRoute(id);
+            return View(usersRoute);
+        }
 
 
 

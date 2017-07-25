@@ -12,7 +12,7 @@ namespace Journey.BLL.DTO
         public string UserID { get; set; }
         public string StartPoint { get; set; }
         public string EndPoint { get; set; }
-        public List<string> Waypoints { get; set; }
+        public string Waypoints { get; set; }
         public DateTime Date { get; set; }
         public int Seats { get; set; }
     }

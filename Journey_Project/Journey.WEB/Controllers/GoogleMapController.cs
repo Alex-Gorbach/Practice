@@ -56,8 +56,9 @@ namespace Journey.WEB.Controllers
                 UserRouteDTO userRouteDto = new UserRouteDTO
                 {
                     StartPoint = model.StartPoint,
+                    Seats=model.Seats,
                     EndPoint = model.EndPoint,
-                    Waypoints = model.Waypoints,
+                    Waypoints =string.Join(",",model.Waypoints),
                     Date = model.Date,
                     UserID = User.Identity.GetUserId()
                 };
@@ -69,7 +70,7 @@ namespace Journey.WEB.Controllers
                     ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
             }
 
-            return View("SuccesCreated");
+            return View();
         }
     }
 }

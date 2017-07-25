@@ -40,7 +40,7 @@
         </div>
 
         <div class="Waypoints">
-        
+            <div class="form-group"><label class="control-label col-md-2" for="WayPoint">Waypoint</label><div class="col-md-10"><input class="form-control text-box single-line" style="matgin-bottom: -16px;" id="Waypoints" name="Waypoints" type="text" value=""></div></div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Seats, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -61,7 +61,7 @@
                         </div>
                         <script type="text/javascript">
                             $(function () {
-                                $('#Date').datetimepicker({format:"DD/MM/YYYY"});
+                                $('#Date').datetimepicker({format:"DD/MM/YYYY hh:mm"});
                             });
                         </script>
                     </div>
@@ -134,6 +134,7 @@
           var waypoints_count = document.getElementsByName("Waypoints").length;
           console.log("waypoints_count:"+waypoints_count);
           console.log(document.getElementsByName("Waypoints").length)
+          console.log(document.getElementById("Seats").value);
           var ss;
 
           if (waypoints_count != 0) {
@@ -146,12 +147,13 @@
               console.log(WayPointArray);
               console.log(WayPointArray[0][0].value);
 
-              for (var i = 0; i < WayPointArray.length;i++) {
-                  
+              for (var i = 0; i < WayPointArray.length; i++) {
+                  if (WayPointArray[i][i].value != ""){
                   waypts.push({
                       location: WayPointArray[i][i].value,
                       stopover: true
-                  });
+                      });
+                  }
               }
               console.log(waypts);
           }

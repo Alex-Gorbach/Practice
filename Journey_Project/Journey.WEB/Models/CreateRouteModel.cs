@@ -13,8 +13,9 @@ namespace Journey.WEB.Models
         [Required]
         public string EndPoint { get; set; }
         [Required]
+        
         public int Seats { get; set; }
-        [Required]
+        
         public List<string> Waypoints { get; set;}
 
         [Required]

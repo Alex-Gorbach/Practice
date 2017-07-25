@@ -20,6 +20,7 @@ namespace Journey.BLL.Interfaces
         Task<OperationDetails> Update(String Id);
         List<UserDTO> GetAllUsersInformation();
 
+
         Task<ClaimsIdentity> Authenticate(UserDTO userDto);
 
 
@@ -27,7 +28,8 @@ namespace Journey.BLL.Interfaces
         Task<OperationDetails> CreateRoute(UserRouteDTO userRouteDto);
         Task<OperationDetails> DeleteRoute(String Id);
         Task<OperationDetails> UpdateRoute(String Id);
-        List<UserDTO> GetAllRouteInformation();
+        List<UserRouteDTO> GetAllRouteInformation(string id);
+        UserRouteDTO GetDetailsForRoute(int id);
 
 
         Task SetInitialData(UserDTO adminDto,List<string> roles);

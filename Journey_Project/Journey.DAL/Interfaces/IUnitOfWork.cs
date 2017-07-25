@@ -9,6 +9,7 @@ namespace Journey.DAL.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         ApplicationUserManager UserManager { get; }
+       
         IClientManager ClientManager { get; }
         IClientRouteManager ClientRouteManager { get; }
         ApplicationRoleManager RoleManager { get; }

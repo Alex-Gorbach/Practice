@@ -155,7 +155,7 @@ namespace Journey.BLL.Services
                    
                     StartPoint = userRouteDto.StartPoint,
                     EndPoint = userRouteDto.EndPoint,
-                    Waypoints= userRouteDto.Waypoints,
+                    Waypoints= userRouteDto.Waypoints.ToString(),
                     UserID = userRouteDto.UserID,
                     Date = userRouteDto.Date,
                     Seats= userRouteDto.Seats
@@ -206,22 +206,36 @@ namespace Journey.BLL.Services
 
         }
 
-        public List<UserDTO> GetAllRouteInformation()
+        public List<UserRouteDTO> GetAllRouteInformation(string id)
         {
+
+           
             //Tuning Automaper
-            //Mapper.Initialize(cfg => cfg.CreateMap<ApplicationUser, UserRouteDTO>()
-            // .ForMember("Id", opt => opt.MapFrom(c => c.ClientRoute.Id))
-            //.ForMember("StartPoint", opt => opt.MapFrom(c => c.ClientRoute.StartPoint))
-            //.ForMember("EndPoint", opt => opt.MapFrom(c => c.ClientRoute.EndPoint))
-            //.ForMember("Lastname", opt => opt.MapFrom(src => src.ClientProfile.Lastname)));
-
+            Mapper.Initialize(cfg => cfg.CreateMap<ClientRoute, UserRouteDTO>()
+             .ForMember("StartPoint", opt => opt.MapFrom(c => c.StartPoint))
+            .ForMember("EndPoint", opt => opt.MapFrom(c => c.EndPoint))
+            .ForMember("Date", opt => opt.MapFrom(c => c.Date))
+            .ForMember("Waypoints", opt => opt.MapFrom(src => src.Waypoints)));
             //Matching
-            var u = Mapper.Map<IEnumerable<ApplicationUser>, List<UserDTO>>(Database.UserManager.Users.ToList());
-
+            var u = Mapper.Map<IEnumerable<ClientRoute>, List<UserRouteDTO>>(Database.ClientRouteManager.GetallUsesRoutes(id));
             return u;
         }
+        
 
+        public UserRouteDTO GetDetailsForRoute(int id)
+        {
 
+           
+            //Tuning Automaper
+            Mapper.Initialize(cfg => cfg.CreateMap<ClientRoute, UserRouteDTO>()
+             .ForMember("StartPoint", opt => opt.MapFrom(c => c.StartPoint))
+            .ForMember("EndPoint", opt => opt.MapFrom(c => c.EndPoint))
+            .ForMember("Date", opt => opt.MapFrom(c => c.Date))
+            .ForMember("Waypoints", opt => opt.MapFrom(src => src.Waypoints)));
+            //Matching
+            var u = Mapper.Map<ClientRoute, UserRouteDTO>(Database.ClientRouteManager.GetOneUsesRouteInformation(id));
+            return u;
+        }
 
     }
 

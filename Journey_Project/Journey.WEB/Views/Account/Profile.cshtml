@@ -1,37 +1,58 @@
-﻿
+﻿@model IEnumerable<Journey.BLL.DTO.UserRouteDTO>
+
 @{
     ViewBag.Title = "Profile";
 }
-<link href="~/Content/UsersStyle.css" rel="stylesheet">
+
 <h2>Profile</h2>
 
-@User.Identity.Name
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
 
+        <th>
+            @Html.DisplayNameFor(model => model.StartPoint)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndPoint)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Waypoints)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seats)
+        </th>
+        <th></th>
+    </tr>
 
-
-
-
-@if (User.IsInRole("admin"))
-{
-    <div>
-@using (Ajax.BeginForm("Search", "Account", new AjaxOptions { UpdateTargetId = "results" }))
-{
-    @Html.AntiForgeryToken();
-    <Input placeholder="Search" ... />
-        <input type="submit" name="UserSearch"/>
-                        
-      
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartPoint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndPoint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Waypoints)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seats)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
 }
-    </div>
 
-}
-@Html.ActionLink("Create route","CreateRoute");
-<div>
-    <iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=400&w=500&cp=44.76753604670456~91.12542399710465&lvl=3&typ=d&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no"></iframe>
-    <div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;">
-        <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp=44.76753604670456~91.12542399710465&amp;sty=r&amp;lvl=3&amp;FORM=MBEDLD">Увеличить карту</a>
-        &nbsp; | &nbsp;
-        <a id="dirMapLink" target="_blank" href="https://www.bing.com/maps/directions?cp=44.76753604670456~91.12542399710465&amp;sty=r&amp;lvl=3&amp;rtp=~pos.44.76753604670456_91.12542399710465____&amp;FORM=MBEDLD">Получить маршрут</a>
-    </div>
-</div>
-
+</table>
