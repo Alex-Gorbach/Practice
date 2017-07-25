@@ -3,57 +3,133 @@
 @{
     ViewBag.Title = "Details";
 }
-
+<link href="~/Content/MapStyle.css" rel="stylesheet" />
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <h2>Details</h2>
 
 <div>
     <h4>UserRouteDTO</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <div class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartPoint)
-        </dt>
+        <label>
+            @Html.DisplayNameFor(model => model.StartPoint) :
+        </label>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartPoint)
-        </dd>
+        <label id="StartPoint">@Html.DisplayFor(model => model.StartPoint)</label>
+        <br/>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndPoint)
-        </dt>
+        <label>
+            @Html.DisplayNameFor(model => model.EndPoint) :
+        </label>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndPoint)
-        </dd>
+        <label id="EndPoint">@Html.DisplayFor(model => model.EndPoint)</label>
+        <br />
+        <label>
+            @Html.DisplayNameFor(model => model.Waypoints) :
+        </label>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Waypoints)
-        </dt>
+        <label id="Waypoints">@Html.DisplayFor(model => model.Waypoints)</label>
+        <br />
+        <label>
+            @Html.DisplayNameFor(model => model.Date) :
+        </label>
 
-        <dd>
-            @Html.DisplayFor(model => model.Waypoints)
-        </dd>
+        <label id="Date">@Html.DisplayFor(model => model.Date)</label>
+        <br />
+        <label>
+            @Html.DisplayNameFor(model => model.Seats) :
+        </label>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
+        <label id="Seats">@Html.DisplayFor(model => model.Seats)</label>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Seats)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Seats)
-        </dd>
-
-    </dl>
+    </div>
 </div>
+
+
+<div id="map"></div>
+<div id="directions-panel" style="width:260px;float:right;height: 309px;max-height: 338px;"></div>
+
+        
+
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+
+
+<script>
+
+
+
+
+      function initMap() {
+          var directionsService = new google.maps.DirectionsService;
+          var directionsDisplay = new google.maps.DirectionsRenderer;
+          var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 6,
+              center: { lat: 41.85, lng: -87.65 }
+          });
+          directionsDisplay.setMap(map);
+
+          
+              calculateAndDisplayRoute(directionsService, directionsDisplay);
+          
+      }
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        var waypts = [];
+        var WayPointArray = [];
+
+        var waypoints = document.getElementById('Waypoints').textContent;
+       
+        console.log(waypoints);
+        if (waypoints.length!=0){
+            var WayPointArray = waypoints.split(', ');
+        for (var i = 0; i < WayPointArray.length; i++) {
+            if (WayPointArray[i] != "") {
+                
+                waypts.push({
+                    location: WayPointArray[i],
+                    stopover: true
+                });
+            }
+        }
+        }
+
+
+        directionsService.route({
+            origin: document.getElementById('StartPoint').textContent,
+
+            destination: document.getElementById('EndPoint').textContent,
+            waypoints: waypts,
+            optimizeWaypoints: true,
+            travelMode: 'DRIVING'
+        }, function (response, status) {
+            if (status === 'OK') {
+                directionsDisplay.setDirections(response);
+                var route = response.routes[0];
+                var summaryPanel = document.getElementById('directions-panel');
+                summaryPanel.innerHTML = '';
+                // Display information for each route
+                for (var i = 0; i < route.legs.length; i++) {
+                    var routeSegment = i + 1;
+                    summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                        '</b><br>';
+                    summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                    summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                    summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+                }
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9GI2-eH45d9wuipFVjopmSUr98_bCSoc &callback=initMap">
+</script>

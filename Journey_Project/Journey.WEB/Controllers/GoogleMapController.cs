@@ -58,7 +58,7 @@ namespace Journey.WEB.Controllers
                     StartPoint = model.StartPoint,
                     Seats=model.Seats,
                     EndPoint = model.EndPoint,
-                    Waypoints =string.Join(",",model.Waypoints),
+                    Waypoints =string.Join(", ",model.Waypoints),
                     Date = model.Date,
                     UserID = User.Identity.GetUserId()
                 };
